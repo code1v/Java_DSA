@@ -1,0 +1,16 @@
+1. Linked list is variable in size.
+
+2. It has non-contiguous Memory.
+
+3. It Insert in O(1) .
+
+4. It Search in O(n) .
+
+5. It has basic structure which includes the data of the node and also the address(next) of the next node . 
+
+6. There are 3 types of Linked List :
+>Singular LL 
+>Double LL
+>Circular LL
+
+7. 
