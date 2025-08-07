@@ -47,3 +47,10 @@ public class ArrayListExample {
   * Comes with built-in methods like .add(), .remove(), .contains(), etc.
   * Makes code cleaner and easier to manage.
   */
+  /* Internal working of an ArrayList 
+   * Size is fixed internally .
+   * If arraylist fills by some amount then ,
+   * *It will create a new arraylist of say,double the size .
+   * *Old elements are copied in new one .
+   * *Old one is deleted .
+   */
