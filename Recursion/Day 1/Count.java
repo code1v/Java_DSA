@@ -1,17 +1,16 @@
-
-public class Ascending {
-    static void asc(int x){
-        if(x <=0){
+public class Count {
+    static void count(int x){
+        if(x>5){
             return;
         }
         
-        asc(x-1);
         System.out.println(x);
-      
+        count(x+1);
         
     }
     public static void main(String[] args) {
       
-        asc(5);
+        count(1);
     }
+    
 }
