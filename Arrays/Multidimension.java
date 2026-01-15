@@ -13,18 +13,36 @@ public class Multidimension {
          //int[][] arr =new int[3][3]; //During declaring the 2D array number ofrows to write are mandatory .
 
          //2D array can also be declared like this 
-         int[][] array = {
+         /*int[][] array = {
             {1,2,3}, //0th index
             {4,5}, //1st index
             {6,7,8,9} //2nd index
-         };
+         };*/
 
         //input
-        for (int[] array1 : array) {
+        /*for (int[] array1 : array) {
             for (int j = 0; j < array1.length; j++) {
                 array1[j] = sc.nextInt();
             }
-        }
+        }*/
+
+
+System.out.print("Enter number of rows: ");
+int rows = sc.nextInt();
+
+int[][] arr = new int[rows][];
+
+for (int i = 0; i < rows; i++) {
+    System.out.print("Enter number of columns for row " + i + ": ");
+    int cols = sc.nextInt();
+    arr[i] = new int[cols];
+
+    for (int j = 0; j < cols; j++) {
+        arr[i][j] = sc.nextInt();
+    }
+}
+
+        
 
             //output
             /*System.out.print(java.util.Arrays.toString(array));
@@ -32,12 +50,19 @@ public class Multidimension {
              * infact we will get only the memory address instead of actual 2-D array .
              * which is something like this : [[I@3bd40a57, [I@fdefd3f, [I@d83da2e]
              */
-            for (int[] row : array) {
+           /*  for (int[] row : array) {
             for (int val : row) {
             System.out.print(val + " ");
             }
             System.out.println();
-            }     
+            }     */
+
+            for(int i=0;i<arr.length;i++){
+                for(int j=0;j<arr[i].length;j++){
+                    System.out.print(arr[i][j]+" ");
+                }
+                System.out.println();
+            }
     }
        
     }
