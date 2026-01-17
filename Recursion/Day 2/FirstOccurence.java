@@ -10,7 +10,7 @@ public class FirstOccurence {
     }
     public static void main(String[] args) {
         int arr[]={1,2,9,3,3,4,3,9};
-        System.out.println("The number is present at index "+number(arr,3,0));
+        System.out.println("The number is present at index "+number(arr,5,0));
     }
     
 }
