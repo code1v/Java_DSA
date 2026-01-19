@@ -1,48 +1,49 @@
 import java.util.Arrays;
 
 public class MergeSort {
-    public static int[] ms(int arr[]){
-        if(arr.length==1){
+
+    public static int[] ms(int arr[]) {
+        if (arr.length == 1) {
             return arr;
         }
-        int mid=arr.length/2;
-        int leftarr[]=ms(Arrays.copyOfRange(arr,0,mid));
-        int rightarr[]=ms(Arrays.copyOfRange(arr,mid+1,arr.length));
 
-        merge(leftarr,rightarr);
-        
+        int mid = arr.length / 2;
+        int left[] = ms(Arrays.copyOfRange(arr, 0, mid));
+        int right[] = ms(Arrays.copyOfRange(arr, mid, arr.length));
 
+        return merge(left, right);
     }
-    public static int[] merge(int leftarr,int rightarr){
-        int i=0;
-        int j=0;
-        int k=0;
-        int newarr[]=new int[k];
-        while(i<leftarr.length && j<rightarr.length){
-            if(leftarr[i]<rightarr[j]){
-                newarr[k]=leftarr[i];
-                k++;
-                i++;
+
+    public static int[] merge(int left[], int right[]) {
+        int i = 0, j = 0, k = 0;
+        int newarr[] = new int[left.length + right.length];
+
+        while(i < left.length && j < right.length){
+            if(left[i] <= right[j]){
+                newarr[k++] = left[i++];
+            } else {
+                newarr[k++] = right[j++];
             }
-            if(leftarr[i]>rightarr[j]){
-                newarr[k]=rightarr[j];
-                k++;
-                j++;
-            }
-        }
-         while (i < leftarr.length) {
-            newarr[k++] = leftarr[i++];
+    }
+
+
+        while (i < left.length) {
+            newarr[k++] = left[i++];
         }
 
-        while (j < rightarr.length) {
-            newarr[k++] = rightarr[j++];
+        while (j < right.length) {
+            newarr[k++] = right[j++];
         }
+
         return newarr;
-
     }
-    public static void main(String[] args) {
-        int arr[]={8,3,4,12,5,6};
 
+    public static void main(String args[]) {
+        int arr[] = {5, 3, 8, 12, 6, 9};
+        int sorted[] = ms(arr);
+
+        for (int i = 0; i < sorted.length; i++) {
+            System.out.print(sorted[i]+" ");
+        }
     }
-    
 }
