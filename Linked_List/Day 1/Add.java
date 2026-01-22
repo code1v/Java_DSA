@@ -1,5 +1,5 @@
 import java.util.*;
-public class AddFirst{
+public class Add{
     public static class Node{
         int data;
         Node next;
@@ -25,6 +25,17 @@ public class AddFirst{
         head=newNode;
     }
 
+    public void addLast(int data){
+        Node newNode = new Node(data);
+        size++;
+        if(head==null){
+            head=tail=newNode;
+            return ;
+        }
+        tail.next=newNode;
+        tail=newNode;
+    }
+
     public void print(){
         if(head==null){
             System.out.print("Empty!!");
@@ -39,17 +50,20 @@ public class AddFirst{
     }
     public static void main(String[] args) {
             Scanner sc = new Scanner(System.in);
-            AddFirst ll = new AddFirst();
-            System.out.print("How many elements you want to add ? -> ");
+            Add ll = new Add();
+            System.out.print("How many elements you want to add at first ? -> ");
             int n=sc.nextInt();
             for(int i=0;i<n;i++){
                 System.out.println("Enter data: ");
                 int m=sc.nextInt();
                 ll.addFirst(m);
             }
+
+            System.out.print("Enter the data you want to add at last : ");
+            int a=sc.nextInt();
+            ll.addLast(a);
             ll.print();
-      
-        
-        
+            System.out.println();
+            System.out.print("Total size is "+size);
     }
 }
