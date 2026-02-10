@@ -1,5 +1,3 @@
-
-
 public class AllOperations {
     public static class Node{
         //Customised Datatype
@@ -17,7 +15,7 @@ public class AllOperations {
     public static Node tail;
     public static int size;
 
-    //Adding  node at first
+    //Adding  node at first (Day 1)
     public void addFirst(int data){
         Node newNode = new Node(data);
         size++;
@@ -31,7 +29,7 @@ public class AllOperations {
         
     }
 
-    //Adding node at last
+    //Adding node at last (Day 1)
     public void addLast(int data){
         Node newNode = new Node(data);
         size++;
@@ -43,7 +41,7 @@ public class AllOperations {
         tail=newNode;
     }
 
-    //Adding node at middle
+    //Adding node at middle (Day 1)
     public void addMiddle(int data,int index){
         Node newNode=new Node(data);
         size++;
@@ -62,7 +60,7 @@ public class AllOperations {
     }
 
 
-    //Remove node at first
+    //Remove node at first (Day 1)
     public int removeFirst(){
         if(head==null){
             System.out.print("Already Empty!!");
@@ -81,7 +79,7 @@ public class AllOperations {
         return val;
     }
 
-    //Remove node at last
+    //Remove node at last (Day 1)
     public int removeLast(){
         if(size==0){
             System.out.print("Already Empty!!");
@@ -106,7 +104,7 @@ public class AllOperations {
     }
 
 
-    //Remove node at middle
+    //Remove node at middle (Day 1)
     public int removeMiddle(int index ){
         if(size==0){
             System.out.print("Already Empty!!");
@@ -134,7 +132,7 @@ public class AllOperations {
     }
 
 
-    //Search Iterative
+    //Search Iterative (Day 1)
     public int itrSearch(int key){
         if(head==null){
             System.out.print("Empty");
@@ -154,6 +152,142 @@ public class AllOperations {
     }
 
 
+    //Reverse a LinkedList (Day 2)
+    public void reverse(){
+        Node prev=null;
+        Node curr=head;
+        Node next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head=prev;
+    }
+
+    //Find and Remove the node from end (Day 2)
+    public void deletefromEnd(int n){
+        int sz=0;
+        Node temp=head;
+        while(temp!=null){
+            temp=temp.next;
+            sz++;
+        }
+        if(n==sz){
+            head=head.next;
+            return;
+        }
+        Node prev=head;
+        int i=1;
+        int find=sz-n;
+        while(i<find){
+            prev=prev.next;
+            i++;
+        }
+        prev.next=prev.next.next;
+        return;
+    }
+
+    //Palindrome (Day 2)
+    public Node findMid(Node head){
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    public boolean isPalindrome(){
+        if(head==null || head.next==null){
+            return true;
+        }
+        Node mid = findMid(head);
+        Node prev=null;
+        Node curr=mid;
+        Node next;
+
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+
+        Node left=head;
+        Node right=prev;
+        while(right!=null){
+            if(left.data!=right.data){
+                return false;
+            }
+            left=left.next;
+            right=right.next;
+        }
+        return true;
+    }
+
+   
+
+    //Detect a loop cycle (Day 2)
+    public boolean hasCycle(Node head) {
+        if (head == null) return false;
+
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;       
+            fast = fast.next.next; 
+
+            if (slow == fast) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    //Creating a loop cycle and remove it also (Day 2)
+    public Node addCycle(Node head){
+         Node node3 = head.next.next;
+        tail.next = node3;
+        return head;
+    }
+    public void removeLoop(Node head) {
+
+        if (head == null || head.next == null) return;
+
+   
+        //Node node3 = head.next.next;
+        //tail.next = node3;
+ 
+   
+        Node slow = head;
+        Node fast = head;
+        boolean hasLoop = false;
+
+        while (fast != null && fast.next != null) {
+           slow = slow.next;
+           fast = fast.next.next;
+
+        if (slow == fast) {
+            hasLoop = true;
+            break;
+        }
+    }
+
+        if (!hasLoop) return;
+
+  
+        slow = head;
+        Node prev=null;
+         while (slow != fast) {
+          slow = slow.next;
+          prev=fast;
+          fast = fast.next;
+    }
+    prev.next=null;
+}
 
     //Print a LinkedList
     public void print(){
@@ -166,7 +300,7 @@ public class AllOperations {
             System.out.print(temp.data+"->");
             temp=temp.next;
         }
-        System.out.print("null");
+        System.out.println("null");
     }
 
     public static void main(String[] args) {
@@ -179,17 +313,17 @@ public class AllOperations {
         ll.addLast(5);
         ll.addLast(6);
         ll.addLast(7);
-        ll.addMiddle(9, 1);
-        ll.removeFirst();
-        ll.removeLast();
-        ll.removeMiddle(3);
-        ll.itrSearch(6);
-        ll.print();
-
-
-    }
-
-
-
-    
+     //   ll.addMiddle(9, 1);
+     //   ll.removeFirst();
+      //  ll.removeLast();
+      //  ll.removeMiddle(3);
+      //  ll.itrSearch(6);
+       // ll.reverse();
+     //  ll.deletefromEnd(3);
+    System.out.println( ll.hasCycle(head));
+    ll.addCycle(head);
+    System.out.println( ll.hasCycle(head));
+    ll.removeLoop(head);
+    ll.print();
+    }    
 }
