@@ -1,0 +1,254 @@
+1️⃣ Class and Object
+🔹 Class
+
+A class is a template / blueprint used to create objects.
+
+It defines data (variables) and behavior (methods).
+
+A class creates a new user-defined data type.
+Example :
+class Student {
+    String name;
+    int age;
+}
+
+
+➡ A class is a logical construct (no physical memory for objects yet).
+
+🔹 Object
+
+An object is an instance of a class.
+
+Objects have physical reality → they occupy memory (heap).
+
+Student s = new Student();
+
+2️⃣ Object Properties (VERY IMPORTANT ⭐)
+
+Every object has three essential properties:
+
+🔸 1. State
+
+Represents current values of instance variables.
+
+s.name = "Vanshika";
+s.age = 20;
+
+
+➡ State = {name = "Vanshika", age = 20}
+
+🔸 2. Identity
+
+Uniquely distinguishes one object from another.
+
+Think of it as the memory address of the object.
+
+Even if two objects have the same state, they are different if their identities differ.
+
+Student s1 = new Student();
+Student s2 = new Student();
+
+
+➡ Same class, same values possible, different objects.
+
+🔸 3. Behavior
+
+Defined by the methods of the class.
+
+Describes what the object can do.
+
+class Student {
+    void study() {
+        System.out.println("Student is studying");
+    }
+}
+
+3️⃣ Dot (.) Operator
+
+Used to access members (variables & methods) of a class/object.
+
+Officially called a separator, but commonly known as dot operator.
+
+🔹 Uses:
+✅ Access instance members
+Student s1 = new Student();
+s1.name = "Student";
+s1.study();
+
+✅ Access static members
+Math.sqrt(16);
+
+4️⃣ The new Keyword
+🔹 Definition
+
+new allocates memory at runtime for an object.
+
+Returns a reference (not actual address).
+
+Java objects are always dynamically allocated.
+
+🔹 Step-by-Step Execution
+Box mybox;         // Step 1
+mybox = new Box(); // Step 2
+
+📌 Step 1: Box mybox;
+
+Declares a reference variable
+
+No object created yet
+
+mybox → null
+
+Handled by Compiler
+
+📌 Step 2: new Box();
+
+JVM:
+
+Allocates memory in heap
+
+Calls constructor
+
+Returns reference
+
+Reference stored in mybox
+
+⚠️ Important
+
+You cannot manually handle memory addresses
+
+Java prevents pointer manipulation → memory safe
+
+5️⃣ Constructor
+🔹 Definition
+
+A special block of code executed automatically when an object is created.
+
+Used to initialize object state.
+
+🔹 Rules
+
+Same name as class
+
+No return type (not even void)
+
+Called automatically using new
+
+Supports overloading
+
+🔹 Types of Constructors
+✅ Default Constructor
+class Car {
+    Car() {
+        System.out.println("Car object created");
+    }
+}
+
+✅ Parameterized Constructor
+class Student {
+    String name;
+    int age;
+
+    Student(String n, int a) {
+        name = n;
+        age = a;
+    }
+}
+
+✅ Copy Constructor (User-defined)
+Student(Student other) {
+    this.name = other.name;
+    this.age = other.age;
+}
+
+
+➡ Java does not provide copy constructor by default (unlike C++).
+
+6️⃣ Primitive Types vs Objects
+❓ Why no new for int, char, etc.?
+
+Primitive types are not objects
+
+Stored as normal variables
+
+Chosen for efficiency & performance
+
+int x = 10;   // no new keyword
+
+7️⃣ Object Reference Assignment (VERY IMPORTANT ⭐⭐)
+Box b1 = new Box();
+Box b2 = b1;
+
+🔹 What happens?
+
+❌ No new object created
+
+❌ No data copied
+
+✅ Only reference is copied
+
+➡ b1 and b2 point to the same object
+
+⚠️ Effect
+
+Changes through b2 affect b1
+
+This is reference copying, not object copying
+
+8️⃣ Parameters vs Arguments
+int square(int i) {
+    return i * i;
+}
+square(100);
+
+Term	Meaning
+Parameter	Variable in method definition (i)
+Argument	Actual value passed (100)
+9️⃣ Compiler vs JVM (EXAM FAVORITE 🔥)
+Bus bus = new Bus();
+
+🔹 LHS – Bus bus
+
+Checked by Compiler
+
+Ensures class exists
+
+Declares reference
+
+No object memory yet
+
+🔹 RHS – new Bus()
+
+Handled by JVM
+
+Allocates heap memory
+
+Calls constructor
+
+Returns reference
+
+🔁 Final Step
+
+JVM assigns returned reference to bus
+
+
+
+🔑 One-Line Summary (Perfect for Revision)
+
+Class → blueprint
+
+Object → real instance
+
+State → data values
+
+Identity → memory location
+
+Behavior → methods
+
+new → runtime memory allocation
+
+Reference assignment ≠ object copy
+
+Compiler → checks reference
+
+JVM → creates object
