@@ -192,7 +192,7 @@ public class AllOperations {
     //Palindrome (Day 2)
     public Node findMid(Node head){
         Node slow=head;
-        Node fast=head;
+        Node fast=head.next;
         while(fast!=null && fast.next!=null){
             slow=slow.next;
             fast=fast.next.next;
@@ -289,6 +289,51 @@ public class AllOperations {
     prev.next=null;
 }
 
+
+//Merge Sort (Day 3)
+public Node mergeSort(Node head){
+    if(head==null || head.next==null){
+        return head;
+    }
+    Node mid=findMid(head);
+    Node rightHead=mid.next;
+    mid.next=null;
+
+    Node newLeft=mergeSort(head);
+    Node newRight=mergeSort(rightHead);
+
+    return merge(newLeft,newRight);
+}
+public Node merge(Node head1,Node head2){
+    Node mergeLL=new Node(-1);
+    Node temp=mergeLL;
+    while(head1!=null && head2!=null){
+        if(head1.data<=head2.data){
+            temp.next=head1;
+            head1=head1.next;
+            temp=temp.next;
+        }
+        else{
+            temp.next=head2;
+            head2=head2.next;
+            temp=temp.next;
+        }
+    }
+    while(head1!=null){
+            temp.next=head1;
+            head1=head1.next;
+            temp=temp.next;
+    }
+    while(head2!=null){
+            temp.next=head2;
+            head2=head2.next;
+            temp=temp.next;
+    }
+    return mergeLL.next;
+
+    
+}
+
     //Print a LinkedList
     public void print(){
         if(head==null){
@@ -305,14 +350,22 @@ public class AllOperations {
 
     public static void main(String[] args) {
         AllOperations ll = new AllOperations();
+        AllOperations LL =new AllOperations();
 
         ll.addFirst(1);
         ll.addLast(2);
         ll.addLast(3);
-        ll.addLast(4);
         ll.addLast(5);
+        ll.addLast(4);
         ll.addLast(6);
         ll.addLast(7);
+      //  LL.addFirst(2);
+      //  LL.addLast(66);
+       // LL.addLast(3);
+       // LL.addLast(44);
+       // LL.addLast(55);
+       // LL.addLast(63);
+      //  LL.addLast(77);
      //   ll.addMiddle(9, 1);
      //   ll.removeFirst();
       //  ll.removeLast();
@@ -320,10 +373,11 @@ public class AllOperations {
       //  ll.itrSearch(6);
        // ll.reverse();
      //  ll.deletefromEnd(3);
-    System.out.println( ll.hasCycle(head));
-    ll.addCycle(head);
-    System.out.println( ll.hasCycle(head));
-    ll.removeLoop(head);
+   // System.out.println( ll.hasCycle(head));
+    //ll.addCycle(head);
+    //System.out.println( ll.hasCycle(head));
+    //ll.removeLoop(head);
+  //  head=ll.mergeSort(head);
     ll.print();
     }    
 }
