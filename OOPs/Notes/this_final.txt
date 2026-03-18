@@ -1,0 +1,205 @@
+1️⃣ this Keyword
+🔹 Definition
+
+this is a reference to the current object.
+
+It is used inside instance methods or constructors.
+
+It always refers to the object that invoked the method.
+
+🔹 Why we need this?
+
+To differentiate instance variables from parameters
+
+To refer to the current object explicitly
+
+class Student {
+    String name;
+
+    Student(String name) {
+        this.name = name; // this.name → instance variable
+    }
+}
+
+
+📌 Here:
+
+name → constructor parameter
+
+this.name → object’s instance variable
+
+2️⃣ final Keyword
+🔹 final with Fields (Variables)
+
+Declaring a field as final makes it constant.
+
+Its value cannot be changed once initialized.
+
+Must be initialized at the time of declaration or inside constructor.
+
+final int FILE_OPEN = 2;
+
+
+📌 Naming Convention:
+
+final variables → UPPERCASE
+
+🔹 Important Limitation of final
+
+final guarantees immutability only for primitive types, not objects.
+
+✅ Primitive Type
+final int x = 10; // value cannot change
+
+⚠️ Reference Type
+final Student s = new Student();
+
+
+s will always refer to the same object
+
+BUT the data inside the object can change
+
+➡ final locks the reference, not the object
+
+3️⃣ finalize() Method (Finalization)
+🔹 Purpose
+
+Used to perform cleanup actions before an object is destroyed.
+
+Called just before the object is reclaimed by the Garbage Collector.
+
+🔹 How it works
+
+JVM automatically calls finalize() when an object becomes eligible for GC.
+
+Used for:
+
+Closing files
+
+Releasing resources
+
+protected void finalize() {
+    // cleanup code
+}
+
+
+⚠️ Important Notes (Exam Tip):
+
+finalize() execution is not guaranteed
+
+Modern Java discourages its use (deprecated in newer versions)
+
+Do not rely on it for critical logic
+
+4️⃣ Constructors (Quick Revision)
+🔹 Key Points
+
+Constructor is called automatically when an object is created.
+
+It runs before the new operator completes.
+
+Has:
+
+Same name as class
+
+No return type (not even void)
+
+Implicit return type → class itself
+
+Box mybox = new Box(); // calls Box() constructor
+
+5️⃣ Constructors & Inheritance (VERY IMPORTANT ⭐⭐⭐)
+🔹 Rule 1: Default Constructor Call
+
+When a derived (child) class object is created:
+
+Base class no-argument constructor is called first
+
+Then derived class constructor executes
+
+🔹 Example
+class Base {
+    Base() {
+        System.out.println("Base Class Constructor Called");
+    }
+}
+
+class Derived extends Base {
+    Derived() {
+        System.out.println("Derived Class Constructor Called");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Derived d = new Derived();
+    }
+}
+
+🔹 Output
+Base Class Constructor Called
+Derived Class Constructor Called
+
+6️⃣ Default Constructor Behavior
+🔹 Facts
+
+Every class has a default constructor
+
+Even if you don’t write one
+
+If a class inherits another class:
+
+The superclass constructor must be called
+
+JVM does this automatically
+
+7️⃣ Parameterized Constructors & super
+🔹 Scenario 1: Superclass has default constructor
+
+Derived class constructor (default or parameterized)
+
+JVM automatically calls super()
+
+🔹 Scenario 2: Superclass has ONLY parameterized constructor ⚠️
+
+❌ This will cause compile-time error unless handled explicitly.
+
+✅ Solution: Use super(arguments)
+
+class Base {
+    Base(int x) {
+        System.out.println(x);
+    }
+}
+
+class Derived extends Base {
+    Derived() {
+        super(10); // mandatory
+    }
+}
+
+
+📌 Rule:
+
+super() or super(args) must be the first statement in constructor
+
+🔑 One-Glance Revision Table
+Concept	Key Idea
+this	Refers to current object
+final variable	Value cannot change
+final reference	Reference fixed, object mutable
+finalize()	Cleanup before GC
+Constructor	Auto-called on object creation
+Inheritance	Superclass constructor runs first
+super()	Calls parent constructor
+🧠 Exam Memory Tricks
+
+this → current object
+
+final → lock value / reference
+
+finalize → before GC
+
+Constructor order → Parent → Child
+
+No default super constructor? → use super()
