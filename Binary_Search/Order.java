@@ -51,7 +51,6 @@ public class Order{
 }
 
 
-
 /*
 in this binary search array we do not know whether it is sorted in descending order or ascending order.
 when target>middle -> left end=mid-1
